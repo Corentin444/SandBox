@@ -1,4 +1,4 @@
-class Sand:
+class Water:
     def __init__(self):
         self.material = "water"
         self.state = "liquid"

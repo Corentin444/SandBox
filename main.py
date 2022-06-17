@@ -33,7 +33,7 @@ while run:
             if event.key == pygame.K_r:
                 simulation.reset_world()
             if event.key == pygame.K_t:
-                if material < len(setting.Colors) - 1:
+                if material < 3:
                     material += 1
                 else:
                     material = 0
@@ -47,7 +47,7 @@ while run:
         if pygame.mouse.get_pressed()[0]:
             mx, my = pygame.mouse.get_pos()
             _x = floor(mx / setting.cell_size)
-            _y = floor(my / setting.cell_size)
+            _y = floor(my / setting.cell_size) + 1
             simulation.instantiate(_x, _y, material)
 
         if not isPaused:

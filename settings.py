@@ -13,7 +13,4 @@ class Setting:
     EMPTY = 0
     SAND = 1
     WATER = 2
-
-    Colors = [(0, 0, 0), (255, 185, 30), (0, 0, 255)]
-    black = (0, 0, 0)
-    white = (255, 255, 255)
+    STONE = 3
