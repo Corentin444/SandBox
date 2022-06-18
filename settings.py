@@ -10,7 +10,4 @@ class Setting:
     rows = width // cell_size
     offset = 0
 
-    EMPTY = 0
-    SAND = 1
-    WATER = 2
-    STONE = 3
+    materials = ["Empty", "Sand", "Water", "Stone", "Dirt", "Grass"]
