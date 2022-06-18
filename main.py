@@ -1,3 +1,5 @@
+import time
+
 import pygame
 from math import floor
 from simulation import Simulation
@@ -41,6 +43,8 @@ while run:
                     material += 1
                 else:
                     material = 0
+            if event.key == pygame.K_s:
+                pygame.image.save(screen, "screenshots/screenshot-" + time.strftime("%Y-%m-%d-%H-%M-%S") + ".jpeg")
 
     if not isPaused:
         simulation.update_world()
@@ -49,7 +53,8 @@ while run:
         screen.blit(text_surface, (setting.width - text_surface.get_width() - 5, 5))
         screen.blit(my_font.render("T : change material", False, (255, 255, 255)), (5, 5))
         screen.blit(my_font.render("R : reset the world", False, (255, 255, 255)), (5, 40))
-        screen.blit(my_font.render("SPACE : pause", False, (255, 255, 255)), (5, 75))
+        screen.blit(my_font.render("S : screenshot", False, (255, 255, 255)), (5, 75))
+        screen.blit(my_font.render("SPACE : pause", False, (255, 255, 255)), (5, 110))
 
     sec = clock.get_rawtime() / 100
     countDownMS -= sec
