@@ -38,6 +38,11 @@ while run:
                 else:
                     material = 0
 
+    if not isPaused:
+        simulation.update_world()
+        countDownMS = updateRate
+        simulation.draw()
+
     sec = clock.get_rawtime() / 100
     countDownMS -= sec
     toggleCounterMS += sec
@@ -49,11 +54,6 @@ while run:
             _x = floor(mx / setting.cell_size)
             _y = floor(my / setting.cell_size) + 1
             simulation.instantiate(_x, _y, material)
-
-        if not isPaused:
-            simulation.update_world()
-            countDownMS = updateRate
-            simulation.draw()
 
     pygame.display.flip()
 

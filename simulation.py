@@ -1,4 +1,3 @@
-import numpy as np
 import pygame
 import random
 
@@ -70,14 +69,16 @@ class Simulation:
 
     def update_water(self, x, y, water):
         # check if the cell bellow is available
-        if self.previous_world[x][y + 1].material == "air":
-            self.current_world[x][y] = Air()
-            self.current_world[x][y + 1] = water
-
-        # check if the right cell is available
-        elif self.previous_world[x + 1][y].material == "air":
-            self.current_world[x][y] = Air()
-            self.current_world[x + 1][y] = water
+        if self.can_move_to(x, y, x, y + 1):
+            self.move_to(x, y, x, y + 1)
+        elif self.can_move_to(x, y, x - water.way, y + 1):
+            self.move_to(x, y, x - water.way, y + 1)
+        elif self.can_move_to(x, y, x + water.way, y + 1):
+            self.move_to(x, y, x + water.way, y + 1)
+        elif self.can_move_to(x, y, x - water.way, y):
+            self.move_to(x, y, x - water.way, y)
+        elif self.can_move_to(x, y, x + water.way, y):
+            self.move_to(x, y, x + water.way, y)
 
     def instantiate(self, x, y, value):
         # check the value and set the cell new material
@@ -92,6 +93,16 @@ class Simulation:
 
     def update_stone(self, x, y, stone):
         pass
+
+    def move_to(self, x, y, target_x, target_y):
+        self.current_world[target_x][target_y] = self.previous_world[x][y]
+        self.current_world[x][y] = self.previous_world[target_x][target_y]
+        self.previous_world[x][y].done = True
+
+    def can_move_to(self, x, y, target_x, target_y):
+        if self.previous_world[target_x][target_y].material == "air" and not self.previous_world[target_x][
+            target_y].done and self.previous_world[x][y].weight > self.previous_world[target_x][target_y].weight:
+            return True
 
     def draw(self):
         for x in range(self.rows):

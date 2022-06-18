@@ -1,3 +1,6 @@
+from random import randrange
+
+
 class Sand:
     def __init__(self):
         self.material = "sand"
@@ -6,3 +9,4 @@ class Sand:
         self.fire_level = 0
         self.done = False
         self.color = 255, 185, 30
+        self.way = randrange(2) - 1

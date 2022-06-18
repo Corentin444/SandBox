@@ -1,3 +1,6 @@
+from random import randrange
+
+
 class Stone:
     def __init__(self):
         self.material = "stone"
@@ -6,3 +9,4 @@ class Stone:
         self.fire_level = 0
         self.done = False
         self.color = 90, 90, 90
+        self.way = randrange(2) - 1
